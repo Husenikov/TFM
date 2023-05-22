@@ -1,0 +1,25 @@
+-- Crear la tabla "researcher" con las siguientes columnas:
+CREATE TABLE "sh_experiments".researcher (
+  RESEARCHER_ID SERIAL PRIMARY KEY, -- Columna de tipo serial que sirve como clave primaria
+  RESEARCHER_NAME VARCHAR(50) NOT NULL, -- Columna de tipo cadena de caracteres (VARCHAR) que almacena el nombre del investigador (no puede ser nulo)
+  RESEARCHER_SURENAME VARCHAR(50) NOT NULL, -- Columna de tipo VARCHAR que almacena el apellido del investigador (no puede ser nulo)
+  ROLE VARCHAR(50) NOT NULL -- Columna de tipo VARCHAR que almacena el rol del investigador (no puede ser nulo)
+);
+
+-- Crear la tabla "experiment" con las siguientes columnas:
+CREATE TABLE "sh_experiments".experiment (
+  EXPERIMENT_ID SERIAL PRIMARY KEY, -- Columna de tipo serial que sirve como clave primaria
+  EXPERIMENT_NAME VARCHAR(50) NOT NULL, -- Columna de tipo VARCHAR que almacena el nombre del experimento (no puede ser nulo)
+  RESEARCHER_ID INTEGER NOT NULL, -- Columna de tipo entero (INTEGER) que almacena el ID del investigador asociado al experimento (no puede ser nulo)
+  WAVELENGTH_MIN INTEGER NOT NULL, -- Columna de tipo entero que almacena el valor mínimo de longitud de onda (no puede ser nulo)
+  WAVELENGTH_MAX INTEGER NOT NULL, -- Columna de tipo entero que almacena el valor máximo de longitud de onda (no puede ser nulo)
+  WAVELENGTH_STEP INTEGER NOT NULL, -- Columna de tipo entero que almacena el incremento de longitud de onda (no puede ser nulo)
+  ANGLE_MIN INTEGER NOT NULL, -- Columna de tipo entero que almacena el valor mínimo de ángulo (no puede ser nulo)
+  ANGLE_MAX INTEGER NOT NULL, -- Columna de tipo entero que almacena el valor máximo de ángulo (no puede ser nulo)
+  ANGLE_STEP INTEGER NOT NULL, -- Columna de tipo entero que almacena el incremento de ángulo (no puede ser nulo)
+  EXPERIMENT_DATETIME TIMESTAMP NOT NULL, -- Columna de tipo TIMESTAMP que almacena la fecha y hora del experimento (no puede ser nulo)
+  LIGHT_SOURCE VARCHAR(50) NOT NULL, -- Columna de tipo VARCHAR que almacena la fuente de luz utilizada en el experimento (no puede ser nulo)
+  EXPERIMENT_INSTRUMENTS VARCHAR(50)[] DEFAULT ARRAY[]::VARCHAR(50)[], -- Columna de tipo array de VARCHAR que almacena los instrumentos utilizados en el experimento (valor por defecto es un array vacío)
+  RESULT INTEGER[] NOT NULL, -- Columna de tipo array de enteros que almacena los resultados del experimento (no puede ser nulo)
+  FOREIGN KEY (RESEARCHER_ID) REFERENCES "sh_experiments".researcher (RESEARCHER_ID) -- Clave foránea que relaciona la columna RESEARCHER_ID de la tabla experiment con la columna RESEARCHER_ID de la tabla researcher
+);
