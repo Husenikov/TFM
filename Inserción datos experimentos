@@ -21,7 +21,7 @@ function sqlwrite_experiment(conn, experiment_name, researcher_id, wavelength_mi
     % Mostrar mensaje de conexión cerrada
     disp('Conexión cerrada correctamente.');
 end
-conn = postgresql('Mi_Conexión', 'postgres', '40134013');
+conn = postgresql('Mi_Conexión', 'postgres', 'MI_CONTRASEÑA'); % Sustituir MI_CONTRASEÑA por la contraseña de la base de datos
 experiment_id = 1;
 experiment_name = 'Experimento_1'; % Cambia el nombre del experimento aquí
 researcher_id = 22;
