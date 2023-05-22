@@ -1,0 +1,31 @@
+function sqlwrite_researcher(conn, tablename, researcher_id, researcher_name, researcher_surname, role)
+    try
+        % Crear una tabla de datos con los valores especificados
+        data = table(researcher_id, researcher_name, researcher_surname, role, ...
+            'VariableNames', ["researcher_id", "researcher_name", "researcher_surename", "role"]);
+
+        % Escribir los datos en la tabla de la base de datos
+        sqlwrite(conn, tablename, data);
+
+        % Mostrar mensaje de éxito
+        disp('Datos escritos correctamente en la base de datos.');
+    catch exception
+        % Mostrar mensaje de error y detalles del error
+        disp('Error al escribir los datos en la base de datos:');
+        disp(exception.message);
+    end
+    
+    % Cerrar la conexión con la base de datos
+    close(conn);
+    
+    % Mostrar mensaje de conexión cerrada
+    disp('Conexión cerrada correctamente.');
+end
+
+conn = postgresql('Mi_Conexión', 'postgres', 'MI_CONTRASEÑA'); % Sustituir MI_CONTRASEÑA por la contraseña de la base de datos
+tablename = 'optic_experiments.sh_experiments.researcher';
+researcher_id = 22;
+researcher_name = "Michael";
+researcher_surname = "Johnson";
+role = "Technician";
+sqlwrite_verbose(conn, tablename, researcher_id, researcher_name, researcher_surename, role);
