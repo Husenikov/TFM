@@ -1,0 +1,23 @@
+function sqlwrite_experiment(conn, experiment_name, researcher_id, wavelength_min, wavelength_max, wavelength_step, angle_min, angle_max, angle_step, experiment_datetime, light_source, experiment_instruments, result)
+    try
+        % Crear una tabla de datos con los valores especificados
+        data = table([], experiment_name, researcher_id, wavelength_min, wavelength_max, wavelength_step, angle_min, angle_max, angle_step, experiment_datetime, light_source, experiment_instruments, result, ...
+            'VariableNames', {'experiment_id', 'experiment_name', 'researcher_id', 'wavelength_min', 'wavelength_max', 'wavelength_step', 'angle_min', 'angle_max', 'angle_step', 'experiment_datetime', 'light_source', 'experiment_instruments', 'result'});
+
+        % Escribir los datos en la tabla de la base de datos
+        sqlwrite(conn, 'sh_experiments.experiment', data);
+
+        % Mostrar mensaje de éxito
+        disp('Datos escritos correctamente en la tabla "experiment" de la base de datos.');
+    catch exception
+        % Mostrar mensaje de error y detalles del error
+        disp('Error al escribir los datos en la tabla "experiment" de la base de datos:');
+        disp(exception.message);
+    end
+    
+    % Cerrar la conexión con la base de datos
+    close(conn);
+    
+    % Mostrar mensaje de conexión cerrada
+    disp('Conexión cerrada correctamente.');
+end
