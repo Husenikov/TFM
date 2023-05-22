@@ -1,16 +1,16 @@
 -- Crear la tabla "researcher" con las siguientes columnas:
 CREATE TABLE "sh_experiments".researcher (
-  RESEARCHER_ID SERIAL PRIMARY KEY, -- Columna de tipo serial que sirve como clave primaria
-  RESEARCHER_NAME VARCHAR(50) NOT NULL, -- Columna de tipo cadena de caracteres (VARCHAR) que almacena el nombre del investigador (no puede ser nulo)
+  RESEARCHER_ID INTEGER PRIMARY KEY, -- Columna de tipo entero que sirve como clave primaria para identificar al investigador
+  RESEARCHER_NAME VARCHAR(50) NOT NULL, -- Columna de tipo VARCHAR que almacena el nombre del investigador (no puede ser nulo)
   RESEARCHER_SURENAME VARCHAR(50) NOT NULL, -- Columna de tipo VARCHAR que almacena el apellido del investigador (no puede ser nulo)
   ROLE VARCHAR(50) NOT NULL -- Columna de tipo VARCHAR que almacena el rol del investigador (no puede ser nulo)
 );
 
 -- Crear la tabla "experiment" con las siguientes columnas:
 CREATE TABLE "sh_experiments".experiment (
-  EXPERIMENT_ID SERIAL PRIMARY KEY, -- Columna de tipo serial que sirve como clave primaria
+  EXPERIMENT_ID SERIAL PRIMARY KEY, -- Columna de tipo serial que sirve como clave primaria para identificar el experimento
   EXPERIMENT_NAME VARCHAR(50) NOT NULL, -- Columna de tipo VARCHAR que almacena el nombre del experimento (no puede ser nulo)
-  RESEARCHER_ID INTEGER NOT NULL, -- Columna de tipo entero (INTEGER) que almacena el ID del investigador asociado al experimento (no puede ser nulo)
+  RESEARCHER_ID INTEGER NOT NULL, -- Columna de tipo entero que almacena el ID del investigador asociado al experimento (no puede ser nulo)
   WAVELENGTH_MIN INTEGER NOT NULL, -- Columna de tipo entero que almacena el valor mínimo de longitud de onda (no puede ser nulo)
   WAVELENGTH_MAX INTEGER NOT NULL, -- Columna de tipo entero que almacena el valor máximo de longitud de onda (no puede ser nulo)
   WAVELENGTH_STEP INTEGER NOT NULL, -- Columna de tipo entero que almacena el incremento de longitud de onda (no puede ser nulo)
