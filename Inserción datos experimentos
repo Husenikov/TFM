@@ -21,3 +21,20 @@ function sqlwrite_experiment(conn, experiment_name, researcher_id, wavelength_mi
     % Mostrar mensaje de conexión cerrada
     disp('Conexión cerrada correctamente.');
 end
+conn = postgresql('Mi_Conexión', 'postgres', '40134013');
+experiment_id = 1;
+experiment_name = 'Experimento_1'; % Cambia el nombre del experimento aquí
+researcher_id = 22;
+wavelength_min = 400;
+wavelength_max = 700;
+wavelength_step = 10;
+angle_min = 0;
+angle_max = 90;
+angle_step = 15;
+experiment_datetime = datetime('now');
+light_source = 'LED';
+experiment_instruments = {'Instrumento 1', 'Instrumento 2'};
+result = [1.5, 2.0, 3.2, 4.1];
+
+sqlwrite_experiment(conn, experiment_id, experiment_name, researcher_id, wavelength_min, wavelength_max, wavelength_step, angle_min, angle_max, angle_step, experiment_datetime, light_source, experiment_instruments, result);
+
